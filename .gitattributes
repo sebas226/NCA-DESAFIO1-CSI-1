@@ -1,0 +1,27 @@
+# 1. Configuración básica: Autodetectar texto y asegurar LF
+* text=auto
+
+# 2. Forzar formatos específicos
+
+*.js text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.md text eol=lf
+
+# 3. Archivos de datos
+*.json text
+*.csv text
+
+# 4. Tratar archivos binarios 
+
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+
+# 5. Git LFS para archivos grandes
+*.psd filter=lfs diff=lfs merge=lfs -text
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+*.mp3 filter=lfs diff=lfs merge=lfs -text
