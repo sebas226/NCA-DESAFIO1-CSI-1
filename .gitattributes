@@ -9,6 +9,7 @@
 *.md text eol=lf
 
 # 3. Archivos de datos
+
 *.json text
 *.csv text
 
