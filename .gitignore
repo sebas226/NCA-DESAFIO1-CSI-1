@@ -10,8 +10,8 @@
 # Directorios de compilacion 
 /build/
 /Target/
-
 #Imagenes 
+
 *.Jpeg 
 *.gif
 *.bmp
