@@ -12,8 +12,6 @@
 /Target/
 
 #Imagenes 
-*.png 
-*.jpg
 *.Jpeg 
 *.gif
 *.bmp
