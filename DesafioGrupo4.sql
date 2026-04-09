@@ -1,24 +1,31 @@
 create database Desafio_Grupo4;
 use Desafio_Grupo4;
 
-create table Autor(
-id_autor int auto_increment primary key,
-nombre_autor varchar(50) not null
-
+CREATE TABLE Autor (
+    id_autor INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_autor VARCHAR(50) NOT NULL
 );
-create table Libro(
-id_libro int auto_increment primary key,
-titulo varchar(100) not null,
-genero varchar(50) not null,
-cantidad_total int not null,
-cantidad_disponible int not null
-
+CREATE TABLE Libro (
+    id_libro INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(100) NOT NULL,
+    genero VARCHAR(50) NOT NULL,
+    cantidad_total INT NOT NULL,
+    cantidad_disponible INT NOT NULL,
+    id_autor INT,
+    FOREIGN KEY (id_autor)
+        REFERENCES Autor (id_autor)
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
-create table Prestamo(
-id_prestamo int auto_increment primary key,
-fecha_prestamo datetime default(current_date) not null,
-fecha_devolucion datetime default(current_date) not null
-
+CREATE TABLE Prestamo (
+    id_prestamo INT AUTO_INCREMENT PRIMARY KEY,
+    fecha_prestamo DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    fecha_devolucion DATETIME,
+    id_usuario INT,
+    id_libro INT,
+    FOREIGN KEY (id_usuario)
+        REFERENCES Usuario (id_usuario),
+    FOREIGN KEY (id_libro)
+        REFERENCES Libro (id_libro)
 );
 create table Usuario(
 id_usuario int auto_increment primary key,
@@ -28,23 +35,17 @@ email varchar(150)
 contraseña varchar(50) not null
 
 );
-create table empleado(
-id_empleado int auto_increment primary key,
-salario decimal(6,2) not null,
-tiempo_trabajado datetime not null,
-id_usuario int,
-foreign key(id_usuario) references usuario(id_usuario)
-on delete cascade
-on update cascade
-
+CREATE TABLE empleado (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    salario DECIMAL(6 , 2 ) NOT NULL,
+    tiempo_trabajado DATETIME NOT NULL,
+    FOREIGN KEY (id_usuario)
+        REFERENCES usuario (id_usuario)
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
-create table cliente(
-id_cliente int auto_increment primary key,
-fecha_prestamo datetime default(current_date) not null,
-fecha_devolucion datetime default(current_date) not null,
-id_usuario int,
-foreign key(id_usuario) references usuario(id_usuario)
-on delete cascade
-on update cascade
-
+CREATE TABLE cliente (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    FOREIGN KEY (id_usuario)
+        REFERENCES usuario (id_usuario)
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
