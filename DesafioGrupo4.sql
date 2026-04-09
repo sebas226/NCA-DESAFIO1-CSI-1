@@ -4,8 +4,7 @@ use Desafio_Grupo4;
 create table Usuario(
 id_usuario int auto_increment primary key,
 nombre_usuario varchar(50) not null,
-email varchar(150) 
-	check (email REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$') not null,
+email varchar(150),
 contraseña varchar(50) not null
 );
 
