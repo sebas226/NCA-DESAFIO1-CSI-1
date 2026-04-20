@@ -2,13 +2,13 @@ create database Desafio_Grupo4;
 -- drop database desafio_grupo4;
 use Desafio_Grupo4;
 
-create table Usuario(
-id_usuario int auto_increment primary key,
-nombre_usuario varchar(50) not null,
-email varchar(150),
-contraseña varchar(50) not null,
-telefono varchar(9) not null,
-direccion varchar(100) not null
+CREATE TABLE Usuario (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_usuario VARCHAR(50) NOT NULL,
+    email VARCHAR(150),
+    contraseña VARCHAR(50) NOT NULL,
+    telefono VARCHAR(9) NOT NULL,
+    direccion VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE Autor (
@@ -84,7 +84,6 @@ CREATE TABLE libro_digital (
         ON UPDATE CASCADE
 );
 
-
 -- =========================
 -- INSERTS
 -- =========================
@@ -98,7 +97,12 @@ VALUES
 ('lucia88','lucia@email.com','pass2','611222333','Calle D'),
 ('ana99','ana@email.com','pass3','622333444','Calle E'),
 ('david10','david@email.com','pass4','633444555','Calle F'),
-('sofia11','sofia@email.com','pass5','644555666','Calle G');
+('sofia11','sofia@email.com','pass5','644555666','Calle G'),
+('carlos22','carlos@email.com','pass6','655666777','Calle H'),
+('elena33','elena@email.com','pass7','666777888','Calle I'),
+('miguel44','miguel@email.com','pass8','677888999','Calle J'),
+('laura55','laura@email.com','pass9','688999000','Calle K'),
+('andres66','andres@email.com','pass10','699000111','Calle L');
 
 -- AUTORES
 INSERT INTO Autor (nombre_autor, fecha_nacimiento, fecha_fallecimiento, estilo_literario)
@@ -109,7 +113,12 @@ VALUES
 ('Agatha Christie','1890-09-15','1976-01-12','Policial'),
 ('George Orwell','1903-06-25','1950-01-21','Histórico'),
 ('Isaac Asimov','1920-01-02','1992-04-06','Ciencia ficción'),
-('Jane Austen','1775-12-16','1817-07-18','Romance');
+('Jane Austen','1775-12-16','1817-07-18','Romance'),
+('H.P. Lovecraft','1890-08-20','1937-03-15','Terror'),
+('Arthur Conan Doyle','1859-05-22','1930-07-07','Policial'),
+('Julio Verne','1828-02-08','1905-03-24','Ciencia ficción'),
+('Pablo Neruda','1904-07-12','1973-09-23','Poesía'),
+('Dan Brown','1964-06-22',NULL,'Ensayo');
 
 -- LIBROS
 INSERT INTO Libro (titulo, genero, cantidad_total, cantidad_disponible, id_autor)
@@ -123,7 +132,12 @@ VALUES
 ('Orgullo y prejuicio','Romance',14,14,7),
 ('El coronel no tiene quien le escriba','Novela',10,10,1),
 ('Misery','Terror',9,9,3),
-('Emma','Romance',11,11,7);
+('Emma','Romance',11,11,7),
+('La llamada de Cthulhu','Terror',7,7,8),
+('Sherlock Holmes','Policial',10,10,9),
+('Viaje al centro de la Tierra','Aventura',12,12,10),
+('Veinte poemas de amor','Poesía',9,9,11),
+('El código Da Vinci','Misterio',15,15,12);
 
 -- CLIENTES
 INSERT INTO Cliente (numero_socio, fecha_registro, limite_prestamos, multas)
@@ -134,7 +148,12 @@ VALUES
 ('SOC-1004','2026-02-15',3,5),
 ('SOC-1005','2026-03-01',3,0),
 ('SOC-1006','2026-03-10',5,0),
-('SOC-1007','2026-03-15',3,2.75);
+('SOC-1007','2026-03-15',3,2.75),
+('SOC-1008','2026-03-20',3,0),
+('SOC-1009','2026-03-25',4,1),
+('SOC-1010','2026-04-01',2,0),
+('SOC-1011','2026-04-05',3,0),
+('SOC-1012','2026-04-10',5,3.5);
 
 -- EMPLEADOS
 INSERT INTO Empleado (id_usuario, salario, tiempo_trabajado)
@@ -143,7 +162,10 @@ VALUES
 (2,1350.00,'2024-02-15 09:30:00'),
 (3,1500.75,'2024-03-10 08:15:00'),
 (4,1100.00,'2024-04-05 10:00:00'),
-(5,1600.00,'2024-05-01 09:00:00');
+(5,1600.00,'2024-05-01 09:00:00'),
+(6,1400.00,'2024-06-01 08:00:00'),
+(7,1550.00,'2024-07-01 09:00:00'),
+(8,1300.00,'2024-08-01 10:00:00');
 
 -- LIBROS FÍSICOS
 INSERT INTO libro_fisico (id_libro, ubicacion, estado)
@@ -157,7 +179,12 @@ VALUES
 (7,'D1','Disponible'),
 (8,'D2','Disponible'),
 (9,'E1','No Disponible'),
-(10,'E2','Disponible');
+(10,'E2','Disponible'),
+(11,'F1','Disponible'),
+(12,'F2','Disponible'),
+(13,'G1','No Disponible'),
+(14,'G2','Disponible'),
+(15,'H1','Disponible');
 
 -- LIBROS DIGITALES
 INSERT INTO libro_digital (id_libro, formato, tamaño_archivo, enlace_descarga)
@@ -168,7 +195,12 @@ VALUES
 (4,'EPUB',4500,'http://libros.com/4.epub'),
 (5,'PDF',8000,'http://libros.com/5.pdf'),
 (6,'PDF',6000,'http://libros.com/6.pdf'),
-(7,'EPUB',3500,'http://libros.com/7.epub');
+(7,'EPUB',3500,'http://libros.com/7.epub'),
+(8,'PDF',5500,'http://libros.com/8.pdf'),
+(9,'EPUB',3200,'http://libros.com/9.epub'),
+(10,'PDF',7200,'http://libros.com/10.pdf'),
+(11,'EPUB',4100,'http://libros.com/11.epub'),
+(12,'PDF',8300,'http://libros.com/12.pdf');
 
 -- PRÉSTAMOS
 INSERT INTO Prestamo (fecha_prestamo, fecha_devolucion, id_usuario, id_libro)
@@ -180,4 +212,9 @@ VALUES
 ('2026-04-05 16:00:00',NULL,5,5),
 ('2026-04-06 12:00:00','2026-04-16 13:00:00',1,2),
 ('2026-04-07 18:00:00',NULL,2,3),
-('2026-04-08 09:00:00','2026-04-18 10:00:00',6,6);
+('2026-04-08 09:00:00','2026-04-18 10:00:00',6,6),
+('2026-04-09 10:00:00','2026-04-19 12:00:00',7,7),
+('2026-04-10 11:00:00',NULL,8,8),
+('2026-04-11 12:00:00','2026-04-21 13:00:00',9,9),
+('2026-04-12 13:00:00',NULL,10,10),
+('2026-04-13 14:00:00','2026-04-23 15:00:00',11,11);
