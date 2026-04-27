@@ -6,7 +6,7 @@ CREATE TABLE Usuario (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre_usuario VARCHAR(50) NOT NULL,
     email VARCHAR(150),
-    contraseña VARCHAR(50) NOT NULL CHECK (contraseña REGEXP '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$'),
+    contraseña VARCHAR(50) NOT NULL,
     telefono VARCHAR(9) NOT NULL,
     direccion VARCHAR(100) NOT NULL
 );
