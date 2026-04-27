@@ -6,11 +6,10 @@ CREATE TABLE Usuario (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre_usuario VARCHAR(50) NOT NULL,
     email VARCHAR(150),
-    contraseña VARCHAR(50) NOT NULL,
+    contraseña VARCHAR(50) NOT NULL CHECK (contraseña REGEXP '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$'),
     telefono VARCHAR(9) NOT NULL,
     direccion VARCHAR(100) NOT NULL
 );
-
 CREATE TABLE Autor (
     id_autor INT AUTO_INCREMENT PRIMARY KEY,
     nombre_autor VARCHAR(50) NOT NULL,
@@ -20,9 +19,7 @@ CREATE TABLE Autor (
 		'Romance','Terror','Policial','Histórico','Poesía','Ensayo') ,
     numero_libros INT DEFAULT 0,
     activo BOOLEAN DEFAULT TRUE
-    
 );
-
 CREATE TABLE Libro (
     id_libro INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(100) NOT NULL,
@@ -87,7 +84,6 @@ CREATE TABLE libro_digital (
 -- =========================
 -- INSERTS
 -- =========================
-
 -- USUARIOS
 INSERT INTO Usuario (nombre_usuario, email, contraseña, telefono, direccion)
 VALUES
@@ -218,3 +214,106 @@ VALUES
 ('2026-04-11 12:00:00','2026-04-21 13:00:00',9,9),
 ('2026-04-12 13:00:00',NULL,10,10),
 ('2026-04-13 14:00:00','2026-04-23 15:00:00',11,11);
+
+-- =========================
+-- CONSULTAS
+-- =========================
+use Desafio_Grupo4;
+-- 1	
+SELECT *
+FROM Usuario;
+-- 2
+SELECT nombre_usuario, email, telefono 
+FROM Usuario;
+
+-- 3
+SELECT titulo,genero, cantidad_disponible
+FROM Libro
+WHERE cantidad_disponible > 0;
+
+-- 4
+SELECT l.titulo, l.genero, a.nombre_autor
+FROM Libro l
+JOIN Autor a ON l.id_autor = a.id_autor;
+
+-- 5
+SELECT u.nombre_usuario, l.titulo, p.fecha_prestamo
+FROM Prestamo p
+JOIN Usuario u ON p.id_usuario = u.id_usuario
+JOIN Libro l ON p.id_libro = l.id_libro;
+
+-- Subconsultas
+-- 1
+SELECT titulo,genero
+FROM Libro
+WHERE id_autor = (
+    SELECT id_autor
+    FROM Autor
+    WHERE nombre_autor = 'Stephen King'
+);
+-- 2
+SELECT nombre_usuario, telefono, direccion
+FROM Usuario
+WHERE id_usuario IN (
+    SELECT id_usuario
+    FROM Prestamo
+);
+-- 3
+SELECT nombre_usuario,telefono, direccion
+FROM Usuario
+WHERE id_usuario NOT IN (
+    SELECT id_usuario
+    FROM Prestamo
+);
+-- 4
+SELECT titulo
+FROM Libro
+WHERE id_libro IN (
+    SELECT id_libro
+    FROM Prestamo
+    WHERE fecha_devolucion IS NULL
+);
+-- 5
+SELECT numero_socio,fecha_registro, multas
+FROM Cliente
+WHERE multas > (
+    SELECT AVG(multas)
+    FROM Cliente
+);
+-- 6
+SELECT nombre_autor
+FROM Autor
+WHERE numero_libros = (
+    SELECT MAX(numero_libros)
+    FROM Autor
+);
+-- 7
+SELECT titulo, genero, cantidad_disponible
+FROM Libro
+WHERE cantidad_disponible = (
+    SELECT MAX(cantidad_disponible)
+    FROM Libro
+);
+
+-- 8
+SELECT id_usuario
+FROM Prestamo
+GROUP BY id_usuario
+HAVING COUNT(*) > 1;
+
+-- 9
+SELECT titulo
+FROM Libro
+WHERE id_libro NOT IN (
+    SELECT id_libro
+    FROM Prestamo
+);
+-- 10
+SELECT nombre_usuario, email, direccion
+FROM Usuario
+WHERE id_usuario IN (
+    SELECT p.id_usuario
+    FROM Prestamo p
+    JOIN Libro l ON p.id_libro = l.id_libro
+    WHERE l.genero = 'Terror'
+);
