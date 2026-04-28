@@ -6,7 +6,7 @@ CREATE TABLE Usuario (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre_usuario VARCHAR(50) NOT NULL,
     email VARCHAR(150),
-    contraseña VARCHAR(50) NOT NULL,
+    contrasena VARCHAR(50) NOT NULL,
     telefono VARCHAR(9) NOT NULL,
     direccion VARCHAR(100) NOT NULL
 );
@@ -80,7 +80,6 @@ CREATE TABLE libro_digital (
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
-
 -- =========================
 -- INSERTS
 -- =========================
@@ -99,7 +98,6 @@ VALUES
 ('miguel44','miguel@email.com','pass8','677888999','Calle J'),
 ('laura55','laura@email.com','pass9','688999000','Calle K'),
 ('andres66','andres@email.com','pass10','699000111','Calle L');
-
 -- AUTORES
 INSERT INTO Autor (nombre_autor, fecha_nacimiento, fecha_fallecimiento, estilo_literario)
 VALUES
