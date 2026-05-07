@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbis Librorum - Alquilar</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body class="bg-light">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="bi bi-book-half me-2"></i>Orbis Librorum</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="catalogo.html">Catalogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="alquilar.html">Alquilar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="nosotros.html">Nosotros</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Seccion Alquilar / Formulario -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-dark" style="font-family: 'Playfair Display', serif;">Alquilar o Comprar Libro</h2>
+                <p class="text-muted">Rellena este formulario para gestionar tu pedido.</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-8">
+                    <div class="card tarjeta-libro p-4">
+                        <div class="card-body">
+                            <form action="#" method="POST">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="nombre" class="form-label fw-bold">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="apellido" class="form-label fw-bold">Apellido</label>
+                                        <input type="text" class="form-control" id="apellido" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="correo" class="form-label fw-bold">Correo Electronico</label>
+                                        <input type="email" class="form-control" id="correo" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="telefono" class="form-label fw-bold">Telefono</label>
+                                        <input type="tel" class="form-control" id="telefono" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="codigo-postal" class="form-label fw-bold">Codigo Postal</label>
+                                        <input type="text" class="form-control" id="codigo-postal" required>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <label for="localidad" class="form-label fw-bold">Localidad</label>
+                                        <input type="text" class="form-control" id="localidad" required>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <label for="libro-seleccion" class="form-label fw-bold">Libro que deseas comprar o alquilar</label>
+                                        <select class="form-select" id="libro-seleccion" required>
+                                            <option value="" selected disabled>Elige un libro...</option>
+                                            <option value="1">Cien anos de soledad</option>
+                                            <option value="2">Harry Potter 1</option>
+                                            <option value="3">It</option>
+                                            <option value="4">Orient Express</option>
+                                            <option value="5">1984</option>
+                                            <option value="6">Fundacion</option>
+                                            <option value="7">Orgullo y prejuicio</option>
+                                            <option value="8">El coronel no tiene quien le escriba</option>
+                                            <option value="9">Misery</option>
+                                            <option value="10">Emma</option>
+                                            <option value="11">La llamada de Cthulhu</option>
+                                            <option value="12">Sherlock Holmes</option>
+                                            <option value="13">Viaje al centro de la Tierra</option>
+                                            <option value="14">Veinte poemas de amor</option>
+                                            <option value="15">El codigo Da Vinci</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="formato-seleccion" class="form-label fw-bold">Formato</label>
+                                        <select class="form-select" id="formato-seleccion" required>
+                                            <option value="" selected disabled>Elige formato...</option>
+                                            <option value="digital">Libro Digital</option>
+                                            <option value="fisico">Libro Fisico</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12 text-center mt-4">
+                                        <button type="submit" class="btn boton-personalizado boton-comprar px-5 py-2">Enviar Solicitud</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="mb-0">&copy; 2026 Orbis Librorum. Proyecto de Lenguaje de Marcas - 1er Grado Superior.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

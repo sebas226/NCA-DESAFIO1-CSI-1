@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<biblioteca>
+    <libro id="1">
+        <titulo>Cien años de soledad</titulo>
+        <autor id="1">Gabriel García Márquez</autor>
+        <genero>Novela</genero>
+        <precio>10</precio>
+        <stock>10</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+    <libro id="2">
+        <titulo>Harry Potter 1</titulo>
+        <autor id="2">J.K. Rowling</autor>
+        <genero>Fantasía</genero>
+        <precio>15</precio>
+        <stock>15</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+    <libro id="3">
+        <titulo>It</titulo>
+        <autor id="3">Stephen King</autor>
+        <genero>Terror</genero>
+        <precio>8</precio>
+        <stock>8</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+    <libro id="4">
+        <titulo>Orient Express</titulo>
+        <autor id="4">Agatha Christie</autor>
+        <genero>Policial</genero>
+        <precio>12</precio>
+        <stock>12</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+    <libro id="5">
+        <titulo>1984</titulo>
+        <autor id="5">George Orwell</autor>
+        <genero>Distopía</genero>
+        <precio>20</precio>
+        <stock>20</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+    <libro id="6">
+        <titulo>Fundación</titulo>
+        <autor id="6">Isaac Asimov</autor>
+        <genero>Ciencia ficción</genero>
+        <precio>10</precio>
+        <stock>10</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+    <libro id="7">
+        <titulo>Orgullo y prejuicio</titulo>
+        <autor id="7">Jane Austen</autor>
+        <genero>Romance</genero>
+        <precio>14</precio>
+        <stock>14</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+    <libro id="8">
+        <titulo>El coronel no tiene quien le escriba</titulo>
+        <autor id="1">Gabriel García Márquez</autor>
+        <genero>Novela</genero>
+        <precio>10</precio>
+        <stock>10</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+    <libro id="9">
+        <titulo>Misery</titulo>
+        <autor id="3">Stephen King</autor>
+        <genero>Terror</genero>
+        <precio>9</precio>
+        <stock>9</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+    <libro id="10">
+        <titulo>Emma</titulo>
+        <autor id="7">Jane Austen</autor>
+        <genero>Romance</genero>
+        <precio>11</precio>
+        <stock>11</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+    <libro id="11">
+        <titulo>La llamada de Cthulhu</titulo>
+        <autor id="8">H.P. Lovecraft</autor>
+        <genero>Terror</genero>
+        <precio>7</precio>
+        <stock>7</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+    <libro id="12">
+        <titulo>Sherlock Holmes</titulo>
+        <autor id="9">Arthur Conan Doyle</autor>
+        <genero>Policial</genero>
+        <precio>10</precio>
+        <stock>10</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+    <libro id="13">
+        <titulo>Viaje al centro de la Tierra</titulo>
+        <autor id="10">Julio Verne</autor>
+        <genero>Aventura</genero>
+        <precio>12</precio>
+        <stock>12</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+    <libro id="14">
+        <titulo>Veinte poemas de amor</titulo>
+        <autor id="11">Pablo Neruda</autor>
+        <genero>Poesía</genero>
+        <precio>9</precio>
+        <stock>9</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+    <libro id="15">
+        <titulo>El código Da Vinci</titulo>
+        <autor id="12">Dan Brown</autor>
+        <genero>Misterio</genero>
+        <precio>15</precio>
+        <stock>15</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+</biblioteca>
