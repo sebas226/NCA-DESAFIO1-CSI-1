@@ -216,7 +216,7 @@ VALUES
 -- =========================
 -- CONSULTAS
 -- =========================
-use Desafio_Grupo4;
+USE Desafio_Grupo4;
 -- 1	
 SELECT *
 FROM Usuario;
@@ -315,6 +315,7 @@ WHERE id_usuario IN (
 -- ==================================================================
 -- CREACION DE USUARIOS Y PERMISOS
 -- ==================================================================
+USE Desafio_Grupo4;
 
 CREATE USER administrador@localhost identified BY "1234";
 CREATE USER david@localhost IDENTIFIED BY "empleado1234";
@@ -322,7 +323,6 @@ CREATE USER paco@"%" IDENTIFIED BY "empleado1234";
 CREATE USER pedro@192.168.1.10 IDENTIFIED BY "empleado1234";
 CREATE USER carlos@"192.168.1.%" IDENTIFIED BY "empleado1234";
 
-FLUSH PRIVILEGES;
 -- Todos los permisos al Administrador
 GRANT ALL PRIVILEGES ON *.* TO administrador@localhost WITH GRANT OPTION;
 -- David y Paco pueden hacer select, insert, update y delete
@@ -344,8 +344,56 @@ GRANT SELECT ON Desafio_Grupo4.libro_digital TO carlos@"192.168.1.%";
 FLUSH PRIVILEGES;
 
 -- ==================================================================
+-- CREACION DE INDICES
+-- ==================================================================
+USE Desafio_Grupo4;
+--  Indice UNIQUE fuera de la tabla para asegurar que no se repitan correos electrónicos
+CREATE UNIQUE INDEX idx_usuario_email 
+ON Usuario(email);
+
+-- Indice UNIQUE usando ALTER TABLE sobre el teléfono de la tabla Usuario
+ALTER TABLE Usuario
+ADD UNIQUE idx_usuario_telefono(telefono);
+
+-- Verificamos que se han añadido correctamente
+SHOW INDEX FROM Usuario;
+
+-- INDICE FULLTEXT sobre las columnas de texto (titulo y descripcion)
+CREATE FULLTEXT INDEX idx_libro_titulo_descripcion
+ON Libro(titulo, descripcion);
+
+-- Busca registros que contengan las palabras "historia" o "mágico" ordenándolos por relevancia
+SELECT id_libro, titulo, genero, descripcion
+FROM Libro
+WHERE MATCH(titulo, descripcion) AGAINST ('historia mágico');
+
+-- Indice sobre el género del libro para acelerar las búsquedas por categoría
+CREATE INDEX idx_libro_genero
+ON Libro(genero);
+
+-- Consulta optimizada gracias al índice
+SELECT * FROM Libro WHERE genero LIKE 'Terror';
+
+--  indice compuesto
+CREATE INDEX idx_libro_cantidades
+ON Libro(cantidad_total, cantidad_disponible);
+
+-- Consulta que aprovecha el indice compuesto 
+SELECT * FROM Libro 
+WHERE cantidad_total > 10 OR cantidad_disponible < 5;
+
+-- indice no clusterizado usando ALTER TABLE sobre el formato de los libros digitales
+ALTER TABLE libro_digital
+ADD INDEX idx_digital_formato(formato);
+
+-- Para borrar indices se haria de esta forma
+-- DROP INDEX idx_usuario_telefono ON Usuario;
+
+-- ==================================================================
 -- CREACION DE VISTAS
 -- ==================================================================
+USE Desafio_Grupo4;
+
 -- Crea una vista que enseñe el id del libro, su título y el nombre del autor
 CREATE VIEW vista_LIBROS_AUTORES AS
 	SELECT l.id_libro AS ID, l.titulo AS TITULO, a.nombre_autor AS AUTOR
@@ -401,66 +449,335 @@ CREATE VIEW VISTA_PRESTAMOS_SINFECHADEVUELTO AS
 SELECT * FROM VISTA_PRESTAMOS_SINFECHADEVUELTO;
 
 -- ==================================================================
--- CREACION DE INDICES
+-- CREACION DE PROC ALMACENADOS
 -- ==================================================================
+USE Desafio_Grupo4;
+-- Muestra todos los libros guardados en la biblioteca
+DELIMITER //
+CREATE PROCEDURE mostrar_libros()
+BEGIN
+	SELECT * FROM Libro;
+END //
+DELIMITER ;
 
---  Indice UNIQUE fuera de la tabla para asegurar que no se repitan correos electrónicos
-CREATE UNIQUE INDEX idx_usuario_email 
-ON Usuario(email);
+-- Prueba del Ejemplo 1
+CALL mostrar_libros();
 
--- Indice UNIQUE usando ALTER TABLE sobre el teléfono de la tabla Usuario
-ALTER TABLE Usuario
-ADD UNIQUE idx_usuario_telefono(telefono);
+-- Muestra la información de un libro poniendo su ID
+DELIMITER //
+CREATE PROCEDURE mostrar_Libro_Por_ID(IN p_id_libro INT)
+BEGIN
+	SELECT * FROM Libro
+    WHERE id_libro = p_id_libro;
+END //
+DELIMITER ;
 
--- Verificamos que se han añadido correctamente
-SHOW INDEX FROM Usuario;
+-- Prueba del Ejemplo 2 
+CALL mostrar_Libro_Por_ID(3);
 
--- Modificamos la estructura de tu tabla 'Libro' para añadirle una columna 'descripcion' (TEXT) 
--- y así poder hacer búsquedas potentes, simulando tus ejemplos de magia e historia.
-ALTER TABLE Libro ADD COLUMN descripcion TEXT AFTER genero;
+-- Inserta un nuevo autor dentro de la tabla (adaptado a tu columna 'nombre_autor')
+DELIMITER //
+CREATE PROCEDURE insertarAutor(
+    IN p_id_autor INT,
+    IN p_nombre_completo VARCHAR(50)
+)
+BEGIN
+	INSERT INTO Autor(id_autor, nombre_autor, fecha_nacimiento, fecha_fallecimiento, estilo_literario, numero_libros, activo)
+    VALUES (p_id_autor, p_nombre_completo, NULL, NULL, 'Histórico', 0, TRUE);
+END //
+DELIMITER ;
 
--- Insertamos un par de descripciones para probar los filtros de búsqueda
-UPDATE Libro SET descripcion = 'Novela histórica de realismo mágico que narra la historia de la familia Buendía en el pueblo de Macondo.' WHERE id_libro = 1;
-UPDATE Libro SET descripcion = 'Historia de misterio policial y crímenes a bordo de un tren clásico.' WHERE id_libro = 4;
-UPDATE Libro SET descripcion = 'Fantasía oscura y terror cósmico con monstruos marinos antiguos.' WHERE id_libro = 11;
+-- Prueba del Ejemplo 3
+CALL insertarAutor(1001, 'Miguel de Cervantes');
+SELECT * FROM Autor WHERE id_autor = 1001;
 
--- CREACIÓN DEL ÍNDICE FULLTEXT sobre las columnas de texto (titulo y descripcion)
-CREATE FULLTEXT INDEX idx_libro_titulo_descripcion
-ON Libro(titulo, descripcion);
+-- Registra un préstamo asignando la fecha y hora actual (NOW())
+DELIMITER //
+CREATE PROCEDURE registrarPrestamo(
+    IN p_id_libro INT,
+    IN p_id_usuario INT
+)
+BEGIN
+    INSERT INTO Prestamo(fecha_prestamo, fecha_devolucion, id_usuario, id_libro)
+    VALUES (NOW(), NULL, p_id_usuario, p_id_libro);
+END //
+DELIMITER ;
 
--- CONSULTA AVANZADA SOBRE EL ÍNDICE FULLTEXT
--- Busca registros que contengan las palabras "historia" o "mágico" ordenándolos por relevancia
-SELECT id_libro, titulo, genero, descripcion
-FROM Libro
-WHERE MATCH(titulo, descripcion) AGAINST ('historia mágico');
+-- Prueba del Ejemplo 4
+CALL registrarPrestamo(1, 9);
 
+-- Comprueba si un usuario existe en el sistema y retorna un mensaje de texto explicativo
+DELIMITER //
+CREATE PROCEDURE comprobarUsuario(
+    IN p_id_usuario INT,
+    OUT mensaje VARCHAR(100)
+)
+BEGIN
+	DECLARE total INT;
+    
+	SELECT COUNT(*) INTO total
+    FROM Usuario
+    WHERE id_usuario = p_id_usuario;
+    
+    IF total > 0 THEN
+		SET mensaje = 'EL USUARIO EXISTE EN EL SISTEMA';
+	ELSE 
+		SET mensaje = 'EL USUARIO NO EXISTE';
+    END IF;
+END //
+DELIMITER ;
 
--- =============================================================================================================
--- 4. ÍNDICES SECUNDARIOS / NO CLUSTERIZADOS (Para acelerar búsquedas WHERE de valores repetibles)
--- =============================================================================================================
+-- Prueba del Ejemplo 5
+CALL comprobarUsuario(3, @mensaje);
+SELECT @mensaje;
 
--- Ejemplo 1: Crear un índice normal sobre el género del libro para acelerar las búsquedas por categoría
-CREATE INDEX idx_libro_genero
-ON Libro(genero);
+-- Revisa la cantidad del stock total de un libro en base a su 'cantidad_total'
+DELIMITER //
+CREATE PROCEDURE clasificarVolumenStock(
+    IN p_id_libro INT,
+    OUT tipo VARCHAR(100)
+)
+BEGIN
+	DECLARE v_cantidad INT;
+    
+	SELECT cantidad_total INTO v_cantidad FROM Libro WHERE id_libro = p_id_libro;
+    
+	CASE 
+		WHEN v_cantidad < 10 THEN
+			SET tipo = 'Stock Bajo';
+        WHEN v_cantidad BETWEEN 10 AND 15 THEN
+			SET tipo = 'Stock Moderado';
+        ELSE
+			SET tipo = 'Stock Alto';
+     END CASE;
+END //
+DELIMITER ;
 
--- Consulta optimizada gracias al índice
-SELECT * FROM Libro WHERE genero LIKE 'Terror';
+-- Prueba del Ejemplo 6
+CALL clasificarVolumenStock(5, @tipo_volumen);
+SELECT @tipo_volumen AS clasificacion_inventario;
 
--- Ejemplo 2: Índice Compuesto (Sobre dos columnas a la vez: cantidad_total y cantidad_disponible)
--- Nota de buena práctica: Al crear este índice compuesto, el índice individual sobre estas columnas se vuelve redundante
-CREATE INDEX idx_libro_cantidades
-ON Libro(cantidad_total, cantidad_disponible);
+-- ==================================================================
+-- CREACION DE TRIGGERS
+-- ==================================================================
+USE Desafio_Grupo4;
+-- 1-Poner la fecha de préstamo automática
 
--- Consulta que aprovecha el índice compuesto (filtros combinados)
-SELECT * FROM Libro 
-WHERE cantidad_total > 10 OR cantidad_disponible < 5;
+DELIMITER //
+CREATE TRIGGER fechaPrestamoAutomatica
+BEFORE INSERT
+ON Prestamo
+FOR EACH ROW
+BEGIN
+    SET NEW.fecha_prestamo = NOW();
+END //
+DELIMITER ;
 
--- Ejemplo 3: Añadir índice no clusterizado usando ALTER TABLE sobre el formato de los libros digitales
-ALTER TABLE libro_digital
-ADD INDEX idx_digital_formato(formato);
+-- 2-Evitar stock negativo al insertar un libro
 
--- Para borrar indices se haria de esta forma
--- DROP INDEX idx_usuario_telefono ON Usuario;
+DELIMITER //
+CREATE TRIGGER validarStockInsertar
+BEFORE INSERT
+ON Libro
+FOR EACH ROW
+BEGIN
+    IF NEW.cantidad_total < 0 THEN
+        SET NEW.cantidad_total = 0;
+    END IF;
+    IF NEW.cantidad_disponible < 0 THEN
+        SET NEW.cantidad_disponible = 0;
+    END IF;
+END //
+DELIMITER ;
 
+-- 3-Evitar límites de préstamo negativos en Clientes
+DROP TRIGGER IF EXISTS validarLimiteCliente;
+DELIMITER //
+CREATE TRIGGER validarLimiteCliente
+BEFORE INSERT
+ON Cliente
+FOR EACH ROW
+BEGIN
+    IF NEW.limite_prestamos < 0 THEN
+        SET NEW.limite_prestamos = 1;
+    END IF;
+END //
+DELIMITER ;
+
+-- 4-Rechazar multas negativas al actualizar
+
+DELIMITER //
+CREATE TRIGGER corregirMultaNegativa
+BEFORE UPDATE
+ON Cliente
+FOR EACH ROW
+BEGIN
+    IF NEW.multas < 0 THEN
+        SET NEW.multas = OLD.multas;
+    END IF;
+END //
+DELIMITER ;
+
+-- 5-Asegurar que las contraseñas no se queden vacías
+DELIMITER //
+CREATE TRIGGER protegerContrasena
+BEFORE UPDATE
+ON Usuario
+FOR EACH ROW
+BEGIN
+    IF NEW.contrasena = '' THEN
+        SET NEW.contrasena = OLD.contrasena;
+    END IF;
+END //
+DELIMITER ;
+
+--  6-Corregir fechas de devolución del futuro
+
+DELIMITER //
+CREATE TRIGGER corregirFechaFutura
+BEFORE UPDATE
+ON Prestamo
+FOR EACH ROW
+BEGIN
+    IF NEW.fecha_devolucion > NOW() THEN
+        SET NEW.fecha_devolucion = NOW();
+    END IF;
+END //
+DELIMITER ;
+
+-- 7-Restar stock disponible automáticamente al hacer un préstamo
+DELIMITER //
+CREATE TRIGGER restarStockAlPrestar
+AFTER INSERT
+ON Prestamo
+FOR EACH ROW
+BEGIN
+    UPDATE Libro 
+    SET cantidad_disponible = cantidad_disponible - 1
+    WHERE id_libro = NEW.id_libro;
+END //
+DELIMITER ;
+
+-- Prueba Trigger 1 y 7 (Inserta un préstamo, le pone la fecha de hoy y le resta 1 al stock del libro 2)
+-- INSERT INTO Prestamo (id_usuario, id_libro) VALUES (1, 2);
+-- SELECT * FROM Prestamo;
+-- SELECT * FROM Libro WHERE id_libro = 2;
+
+-- Prueba Trigger 2 (Inserta un libro con stock negativo, pero se guardará con 0 automáticamente)
+-- INSERT INTO Libro (titulo, genero, cantidad_total, cantidad_disponible, id_autor) VALUES ('Libro Fantasma', 'Terror', -10, -10, 3);
+-- SELECT * FROM Libro WHERE titulo = 'Libro Fantasma';
+
+-- Prueba Trigger 4 (Intenta poner una multa negativa al usuario 2, pero el trigger mantendrá su multa anterior)
+-- UPDATE Cliente SET multas = -25.00 WHERE id_usuario = 2;
+-- SELECT * FROM Cliente WHERE id_usuario = 2;
+
+-- Prueba Trigger 6 (Intenta poner una fecha del año 2030, pero el trigger la forzará a la fecha de hoy)
+-- UPDATE Prestamo SET fecha_devolucion = '2030-12-31 23:59:59' WHERE id_prestamo = 1;
+-- SELECT * FROM Prestamo WHERE id_prestamo = 1;
+
+-- ==================================================================
+-- CREACION DE FUNCIONES ALMACENADAS
+-- ==================================================================
+USE Desafio_Grupo4;
+
+--  1 Contar el total de libros en la biblioteca
+DROP FUNCTION IF EXISTS totalLibros;
+DELIMITER //
+CREATE FUNCTION totalLibros() 
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE total INT;
+    SELECT COUNT(*) INTO total FROM Libro;
+    RETURN total;
+END //
+DELIMITER ;
+
+-- Prueba del Ejemplo 1
+SELECT totalLibros();
+
+--  2 Calcular IVA (21%) sobre la multa de un cliente
+
+DELIMITER //
+CREATE FUNCTION calcularRecargoMulta(p_id_usuario INT) 
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+    DECLARE v_multa DECIMAL(10,2);
+    SELECT multas INTO v_multa FROM Cliente WHERE id_usuario = p_id_usuario;
+    RETURN v_multa * 1.21;
+END //
+DELIMITER ;
+
+-- Prueba del Ejemplo 2 
+SELECT calcularRecargoMulta(2);
+
+-- EJEMPLO 3: Saber cuántos préstamos activos tiene un usuario
+
+DELIMITER //
+CREATE FUNCTION prestamosActivos(p_id_usuario INT)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE total INT;
+    SELECT COUNT(*) INTO total
+    FROM Prestamo
+    WHERE id_usuario = p_id_usuario
+      AND fecha_devolucion IS NULL;
+    RETURN total;
+END //
+DELIMITER ;
+
+-- Prueba del Ejemplo 3
+SELECT prestamosActivos(5);
+
+-- 5 Formatear texto
+DELIMITER //
+CREATE FUNCTION nombreFormateadoAutor(p_id_autor INT)
+RETURNS VARCHAR(100)
+DETERMINISTIC
+BEGIN
+    DECLARE v_nombre VARCHAR(100);
+    SELECT UPPER(nombre_autor) INTO v_nombre FROM Autor WHERE id_autor = p_id_autor;
+    RETURN v_nombre;
+END //
+DELIMITER ;
+
+-- Prueba del Ejemplo 5
+SELECT nombreFormateadoAutor(1);
+
+--  6 Obtener estado de un libro según su histórico de préstamos
+
+DELIMITER //
+CREATE FUNCTION estado_prestamo_libro(p_id_libro INT)
+RETURNS VARCHAR(20)
+DETERMINISTIC
+BEGIN
+    DECLARE v_fecha_dev DATETIME;
+    DECLARE v_existe INT;
+
+    -- Comprobamos primero si el libro ha sido prestado alguna vez
+    SELECT COUNT(*) INTO v_existe FROM Prestamo WHERE id_libro = p_id_libro;
+
+    IF v_existe = 0 THEN
+        RETURN 'NUNCA PRESTADO';
+    ELSE
+        -- Tomamos el último estado de devolución de ese libro
+        SELECT fecha_devolucion INTO v_fecha_dev 
+        FROM Prestamo 
+        WHERE id_libro = p_id_libro 
+        ORDER BY fecha_prestamo DESC 
+        LIMIT 1;
+
+        RETURN CASE
+            WHEN v_fecha_dev IS NULL THEN 'PRESTADO ACTIVO'
+            ELSE 'EN ESTANTERÍA'
+        END;
+    END IF;
+END //
+DELIMITER ;
+
+-- Prueba del Ejemplo 6
+SELECT id_libro, titulo, estado_prestamo_libro(id_libro) AS estado_actual FROM Libro;
 
 
