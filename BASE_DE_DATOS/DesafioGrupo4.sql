@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS Desafio_Grupo4;
+-- DROP DATABASE IF EXISTS Desafio_Grupo4;
 CREATE DATABASE Desafio_Grupo4;
 USE Desafio_Grupo4;
 
