@@ -546,23 +546,6 @@ BEGIN
 END //
 DELIMITER ;
 
--- Prueba Trigger 1 y 7 (Inserta un préstamo, le pone la fecha de hoy y le resta 1 al stock del libro 2)
--- INSERT INTO Prestamo (id_usuario, id_libro) VALUES (1, 2);
--- SELECT * FROM Prestamo;
--- SELECT * FROM Libro WHERE id_libro = 2;
-
--- Prueba Trigger 2 (Inserta un libro con stock negativo, pero se guardará con 0 automáticamente)
--- INSERT INTO Libro (titulo, genero, cantidad_total, cantidad_disponible, id_autor) VALUES ('Libro Fantasma', 'Terror', -10, -10, 3);
--- SELECT * FROM Libro WHERE titulo = 'Libro Fantasma';
-
--- Prueba Trigger 4 (Intenta poner una multa negativa al usuario 2, pero el trigger mantendrá su multa anterior)
--- UPDATE Cliente SET multas = -25.00 WHERE id_usuario = 2;
--- SELECT * FROM Cliente WHERE id_usuario = 2;
-
--- Prueba Trigger 6 (Intenta poner una fecha del año 2030, pero el trigger la forzará a la fecha de hoy)
--- UPDATE Prestamo SET fecha_devolucion = '2030-12-31 23:59:59' WHERE id_prestamo = 1;
--- SELECT * FROM Prestamo WHERE id_prestamo = 1;
-
 -- ==================================================================
 -- CREACION DE FUNCIONES ALMACENADAS
 -- ==================================================================
