@@ -77,7 +77,7 @@ CREATE TABLE libro_digital (
 );
 
 -- =============================================================
--- INSERTS (Datos Corregidos)
+--  CREACION DE INSERTS 
 -- =============================================================
 
 -- USUARIOS (IDs del 1 al 12 automáticamente)
@@ -267,42 +267,16 @@ WHERE id_libro IN (
     FROM Prestamo
     WHERE fecha_devolucion IS NULL
 );
+
 -- 5
-SELECT numero_socio,fecha_registro, multas
-FROM Cliente
-WHERE multas > (
-    SELECT AVG(multas)
-    FROM Cliente
-);
--- 6
 SELECT nombre_autor
 FROM Autor
 WHERE numero_libros = (
     SELECT MAX(numero_libros)
     FROM Autor
 );
--- 7
-SELECT titulo, genero, cantidad_disponible
-FROM Libro
-WHERE cantidad_disponible = (
-    SELECT MAX(cantidad_disponible)
-    FROM Libro
-);
 
--- 8
-SELECT id_usuario
-FROM Prestamo
-GROUP BY id_usuario
-HAVING COUNT(*) > 1;
-
--- 9
-SELECT titulo
-FROM Libro
-WHERE id_libro NOT IN (
-    SELECT id_libro
-    FROM Prestamo
-);
--- 10
+-- 6
 SELECT nombre_usuario, email, direccion
 FROM Usuario
 WHERE id_usuario IN (
@@ -318,10 +292,10 @@ WHERE id_usuario IN (
 USE Desafio_Grupo4;
 
 CREATE USER administrador@localhost identified BY "1234";
-CREATE USER david@localhost IDENTIFIED BY "empleado1234";
-CREATE USER paco@"%" IDENTIFIED BY "empleado1234";
-CREATE USER pedro@192.168.1.10 IDENTIFIED BY "empleado1234";
-CREATE USER carlos@"192.168.1.%" IDENTIFIED BY "empleado1234";
+CREATE USER david@localhost IDENTIFIED BY "empleado1";
+CREATE USER paco@"%" IDENTIFIED BY "empleado2";
+CREATE USER pedro@192.168.1.10 IDENTIFIED BY "empleado3";
+CREATE USER carlos@"192.168.1.%" IDENTIFIED BY "empleado4";
 
 -- Todos los permisos al Administrador
 GRANT ALL PRIVILEGES ON *.* TO administrador@localhost WITH GRANT OPTION;
@@ -351,10 +325,6 @@ USE Desafio_Grupo4;
 CREATE UNIQUE INDEX idx_usuario_email 
 ON Usuario(email);
 
--- Indice UNIQUE usando ALTER TABLE sobre el teléfono de la tabla Usuario
-ALTER TABLE Usuario
-ADD UNIQUE idx_usuario_telefono(telefono);
-
 -- Verificamos que se han añadido correctamente
 SHOW INDEX FROM Usuario;
 
@@ -370,17 +340,6 @@ WHERE MATCH(titulo, descripcion) AGAINST ('historia mágico');
 -- Indice sobre el género del libro para acelerar las búsquedas por categoría
 CREATE INDEX idx_libro_genero
 ON Libro(genero);
-
--- Consulta optimizada gracias al índice
-SELECT * FROM Libro WHERE genero LIKE 'Terror';
-
---  indice compuesto
-CREATE INDEX idx_libro_cantidades
-ON Libro(cantidad_total, cantidad_disponible);
-
--- Consulta que aprovecha el indice compuesto 
-SELECT * FROM Libro 
-WHERE cantidad_total > 10 OR cantidad_disponible < 5;
 
 -- indice no clusterizado usando ALTER TABLE sobre el formato de los libros digitales
 ALTER TABLE libro_digital
@@ -403,26 +362,13 @@ CREATE VIEW vista_LIBROS_AUTORES AS
 -- CONSULTA SOBRE LA PROPIA VISTA
 SELECT * FROM vista_LIBROS_AUTORES
 WHERE ID > 11;
-
--- Vista para RRHH: Muestra datos confidenciales (Salario) haciendo un JOIN con Empleado
-CREATE VIEW vista_usuarios_rrhh AS
-	SELECT u.id_usuario AS id, u.nombre_usuario AS nombre, u.direccion, e.salario, u.telefono AS tfno
-	FROM Usuario u
-	JOIN Empleado e ON u.id_usuario = e.id_usuario;
     
--- Vista Pública: Solo muestra datos básicos para la gestión general de la biblioteca
+-- Solo muestra datos básicos para la gestión general de la biblioteca
 CREATE VIEW vista_usuarios_publica AS
 	SELECT u.id_usuario AS id, u.nombre_usuario AS nombre, u.email
 	FROM Usuario u;
-
--- En tu base de datos no hay "precio ni peso", calcularemos el total de multas acumuladas por cliente en los préstamos
-CREATE VIEW VISTA_TOTAL_MULTAS_CLIENTE(ID_CLIENTE, NOMBRE_CLIENTE, TOTAL_MULTAS) AS
-	SELECT u.id_usuario, u.nombre_usuario, SUM(c.multas)
-	FROM Usuario u 
-    JOIN Cliente c ON u.id_usuario = c.id_usuario
-    GROUP BY u.id_usuario, u.nombre_usuario;
     
--- Segunda forma de definir la vista (con alias directamente en el SELECT)
+-- Vista con alias
 CREATE VIEW VISTA_TOTAL_MULTAS_CLIENTE2 AS
 	SELECT u.id_usuario AS ID_CLIENTE, u.nombre_usuario AS NOMBRE_CLIENTE, SUM(c.multas) AS TOTAL_MULTAS
 	FROM Usuario u 
@@ -434,19 +380,15 @@ SELECT * FROM VISTA_TOTAL_MULTAS_CLIENTE;
 SELECT * FROM VISTA_TOTAL_MULTAS_CLIENTE2;
 SELECT TOTAL_MULTAS FROM VISTA_TOTAL_MULTAS_CLIENTE;
 
--- Vista base: Trae todos los datos esenciales de los préstamos
+-- Trae todos los datos esenciales de los préstamos
 CREATE VIEW VISTA_PRESTAMOS_TODOS AS
 	SELECT id_libro AS LIBRO, fecha_prestamo AS FECHA_PRESTADO, fecha_devolucion AS FECHA_DEVUELTO
     FROM Prestamo;
-   
-SELECT * FROM VISTA_PRESTAMOS_TODOS;
    
 CREATE VIEW VISTA_PRESTAMOS_SINFECHADEVUELTO AS
 	SELECT LIBRO, FECHA_PRESTADO
     FROM VISTA_PRESTAMOS_TODOS
     WHERE FECHA_DEVUELTO IS NULL;
-
-SELECT * FROM VISTA_PRESTAMOS_SINFECHADEVUELTO;
 
 -- ==================================================================
 -- CREACION DE PROC ALMACENADOS
@@ -475,7 +417,7 @@ DELIMITER ;
 -- Prueba del Ejemplo 2 
 CALL mostrar_Libro_Por_ID(3);
 
--- Inserta un nuevo autor dentro de la tabla (adaptado a tu columna 'nombre_autor')
+-- Inserta un nuevo autor dentro de la tabla
 DELIMITER //
 CREATE PROCEDURE insertarAutor(
     IN p_id_autor INT,
@@ -487,7 +429,7 @@ BEGIN
 END //
 DELIMITER ;
 
--- Prueba del Ejemplo 3
+-- Prueba de insertar autores
 CALL insertarAutor(1001, 'Miguel de Cervantes');
 SELECT * FROM Autor WHERE id_autor = 1001;
 
@@ -503,7 +445,7 @@ BEGIN
 END //
 DELIMITER ;
 
--- Prueba del Ejemplo 4
+-- Prueba de registrar prestamo
 CALL registrarPrestamo(1, 9);
 
 -- Comprueba si un usuario existe en el sistema y retorna un mensaje de texto explicativo
@@ -530,32 +472,6 @@ DELIMITER ;
 -- Prueba del Ejemplo 5
 CALL comprobarUsuario(3, @mensaje);
 SELECT @mensaje;
-
--- Revisa la cantidad del stock total de un libro en base a su 'cantidad_total'
-DELIMITER //
-CREATE PROCEDURE clasificarVolumenStock(
-    IN p_id_libro INT,
-    OUT tipo VARCHAR(100)
-)
-BEGIN
-	DECLARE v_cantidad INT;
-    
-	SELECT cantidad_total INTO v_cantidad FROM Libro WHERE id_libro = p_id_libro;
-    
-	CASE 
-		WHEN v_cantidad < 10 THEN
-			SET tipo = 'Stock Bajo';
-        WHEN v_cantidad BETWEEN 10 AND 15 THEN
-			SET tipo = 'Stock Moderado';
-        ELSE
-			SET tipo = 'Stock Alto';
-     END CASE;
-END //
-DELIMITER ;
-
--- Prueba del Ejemplo 6
-CALL clasificarVolumenStock(5, @tipo_volumen);
-SELECT @tipo_volumen AS clasificacion_inventario;
 
 -- ==================================================================
 -- CREACION DE TRIGGERS
@@ -604,21 +520,7 @@ BEGIN
 END //
 DELIMITER ;
 
--- 4-Rechazar multas negativas al actualizar
-
-DELIMITER //
-CREATE TRIGGER corregirMultaNegativa
-BEFORE UPDATE
-ON Cliente
-FOR EACH ROW
-BEGIN
-    IF NEW.multas < 0 THEN
-        SET NEW.multas = OLD.multas;
-    END IF;
-END //
-DELIMITER ;
-
--- 5-Asegurar que las contraseñas no se queden vacías
+-- 4 Asegurar que las contraseñas no se queden vacías
 DELIMITER //
 CREATE TRIGGER protegerContrasena
 BEFORE UPDATE
@@ -631,21 +533,7 @@ BEGIN
 END //
 DELIMITER ;
 
---  6-Corregir fechas de devolución del futuro
-
-DELIMITER //
-CREATE TRIGGER corregirFechaFutura
-BEFORE UPDATE
-ON Prestamo
-FOR EACH ROW
-BEGIN
-    IF NEW.fecha_devolucion > NOW() THEN
-        SET NEW.fecha_devolucion = NOW();
-    END IF;
-END //
-DELIMITER ;
-
--- 7-Restar stock disponible automáticamente al hacer un préstamo
+-- 5 Restar stock disponible automáticamente al hacer un préstamo
 DELIMITER //
 CREATE TRIGGER restarStockAlPrestar
 AFTER INSERT
@@ -681,8 +569,8 @@ DELIMITER ;
 USE Desafio_Grupo4;
 
 --  1 Contar el total de libros en la biblioteca
-DROP FUNCTION IF EXISTS totalLibros;
 DELIMITER //
+
 CREATE FUNCTION totalLibros() 
 RETURNS INT
 DETERMINISTIC
@@ -691,28 +579,14 @@ BEGIN
     SELECT COUNT(*) INTO total FROM Libro;
     RETURN total;
 END //
+
+-- 2. Restablecemos el delimitador normal
 DELIMITER ;
 
--- Prueba del Ejemplo 1
+-- 3. Prueba de la función
 SELECT totalLibros();
 
---  2 Calcular IVA (21%) sobre la multa de un cliente
-
-DELIMITER //
-CREATE FUNCTION calcularRecargoMulta(p_id_usuario INT) 
-RETURNS DECIMAL(10,2)
-DETERMINISTIC
-BEGIN
-    DECLARE v_multa DECIMAL(10,2);
-    SELECT multas INTO v_multa FROM Cliente WHERE id_usuario = p_id_usuario;
-    RETURN v_multa * 1.21;
-END //
-DELIMITER ;
-
--- Prueba del Ejemplo 2 
-SELECT calcularRecargoMulta(2);
-
--- EJEMPLO 3: Saber cuántos préstamos activos tiene un usuario
+-- EJEMPLO 2: Saber cuántos préstamos activos tiene un usuario
 
 DELIMITER //
 CREATE FUNCTION prestamosActivos(p_id_usuario INT)
@@ -728,10 +602,10 @@ BEGIN
 END //
 DELIMITER ;
 
--- Prueba del Ejemplo 3
+-- Prueba del Ejemplo 2
 SELECT prestamosActivos(5);
 
--- 5 Formatear texto
+-- 3 Formatear texto
 DELIMITER //
 CREATE FUNCTION nombreFormateadoAutor(p_id_autor INT)
 RETURNS VARCHAR(100)
@@ -743,41 +617,5 @@ BEGIN
 END //
 DELIMITER ;
 
--- Prueba del Ejemplo 5
+-- Prueba del Ejemplo 3
 SELECT nombreFormateadoAutor(1);
-
---  6 Obtener estado de un libro según su histórico de préstamos
-
-DELIMITER //
-CREATE FUNCTION estado_prestamo_libro(p_id_libro INT)
-RETURNS VARCHAR(20)
-DETERMINISTIC
-BEGIN
-    DECLARE v_fecha_dev DATETIME;
-    DECLARE v_existe INT;
-
-    -- Comprobamos primero si el libro ha sido prestado alguna vez
-    SELECT COUNT(*) INTO v_existe FROM Prestamo WHERE id_libro = p_id_libro;
-
-    IF v_existe = 0 THEN
-        RETURN 'NUNCA PRESTADO';
-    ELSE
-        -- Tomamos el último estado de devolución de ese libro
-        SELECT fecha_devolucion INTO v_fecha_dev 
-        FROM Prestamo 
-        WHERE id_libro = p_id_libro 
-        ORDER BY fecha_prestamo DESC 
-        LIMIT 1;
-
-        RETURN CASE
-            WHEN v_fecha_dev IS NULL THEN 'PRESTADO ACTIVO'
-            ELSE 'EN ESTANTERÍA'
-        END;
-    END IF;
-END //
-DELIMITER ;
-
--- Prueba del Ejemplo 6
-SELECT id_libro, titulo, estado_prestamo_libro(id_libro) AS estado_actual FROM Libro;
-
-
