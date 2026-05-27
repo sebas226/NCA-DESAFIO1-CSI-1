@@ -312,6 +312,9 @@ WHERE id_usuario IN (
     WHERE l.genero = 'Terror'
 );
 
+SELECT *
+FROM Usuario;
+
 -- ==================================================================
 -- CREACION DE USUARIOS Y PERMISOS
 -- ==================================================================
