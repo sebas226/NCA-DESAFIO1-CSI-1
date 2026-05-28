@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS Desafio_Grupo4;
+-- DROP DATABASE IF EXISTS Desafio_Grupo4;
 CREATE DATABASE Desafio_Grupo4;
 USE Desafio_Grupo4;
 
@@ -277,6 +277,9 @@ WHERE id_usuario IN (
     JOIN Libro l ON p.id_libro = l.id_libro
     WHERE l.genero = 'Terror'
 );
+
+SELECT *
+FROM Usuario;
 
 -- ==================================================================
 -- CREACION DE USUARIOS Y PERMISOS
