@@ -1,168 +1,1144 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <biblioteca>
+
     <libro id="1">
-        <titulo>Cien años de soledad</titulo>
+        <titulo>Libro 1</titulo>
         <autor id="1">Gabriel García Márquez</autor>
         <genero>Novela</genero>
-        <precio>10</precio>
-        <stock>10</stock>
+        <precio>11</precio>
+        <stock>6</stock>
         <formatos>
             <formato>Físico</formato>
             <formato>Digital</formato>
         </formatos>
     </libro>
+
     <libro id="2">
-        <titulo>Harry Potter 1</titulo>
-        <autor id="2">J.K. Rowling</autor>
-        <genero>Fantasía</genero>
-        <precio>15</precio>
-        <stock>15</stock>
+        <titulo>Libro 2</titulo>
+        <autor id="2">Stephen King</autor>
+        <genero>Terror</genero>
+        <precio>12</precio>
+        <stock>7</stock>
         <formatos>
-            <formato>Físico</formato>
             <formato>Digital</formato>
         </formatos>
     </libro>
+
     <libro id="3">
-        <titulo>It</titulo>
-        <autor id="3">Stephen King</autor>
-        <genero>Terror</genero>
-        <precio>8</precio>
+        <titulo>Libro 3</titulo>
+        <autor id="3">Jane Austen</autor>
+        <genero>Romance</genero>
+        <precio>13</precio>
         <stock>8</stock>
         <formatos>
             <formato>Físico</formato>
-            <formato>Digital</formato>
         </formatos>
     </libro>
+
     <libro id="4">
-        <titulo>Orient Express</titulo>
-        <autor id="4">Agatha Christie</autor>
-        <genero>Policial</genero>
-        <precio>12</precio>
-        <stock>12</stock>
-        <formatos>
-            <formato>Físico</formato>
-            <formato>Digital</formato>
-        </formatos>
-    </libro>
-    <libro id="5">
-        <titulo>1984</titulo>
-        <autor id="5">George Orwell</autor>
-        <genero>Distopía</genero>
-        <precio>20</precio>
-        <stock>20</stock>
-        <formatos>
-            <formato>Físico</formato>
-            <formato>Digital</formato>
-        </formatos>
-    </libro>
-    <libro id="6">
-        <titulo>Fundación</titulo>
-        <autor id="6">Isaac Asimov</autor>
+        <titulo>Libro 4</titulo>
+        <autor id="4">Isaac Asimov</autor>
         <genero>Ciencia ficción</genero>
-        <precio>10</precio>
+        <precio>14</precio>
+        <stock>9</stock>
+        <formatos>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="5">
+        <titulo>Libro 5</titulo>
+        <autor id="5">Agatha Christie</autor>
+        <genero>Policial</genero>
+        <precio>15</precio>
         <stock>10</stock>
         <formatos>
             <formato>Físico</formato>
             <formato>Digital</formato>
         </formatos>
     </libro>
+
+    <libro id="6">
+        <titulo>Libro 6</titulo>
+        <autor id="6">George Orwell</autor>
+        <genero>Distopía</genero>
+        <precio>16</precio>
+        <stock>11</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
     <libro id="7">
-        <titulo>Orgullo y prejuicio</titulo>
-        <autor id="7">Jane Austen</autor>
-        <genero>Romance</genero>
-        <precio>14</precio>
+        <titulo>Libro 7</titulo>
+        <autor id="7">J.K. Rowling</autor>
+        <genero>Fantasía</genero>
+        <precio>17</precio>
+        <stock>12</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="8">
+        <titulo>Libro 8</titulo>
+        <autor id="8">Julio Verne</autor>
+        <genero>Aventura</genero>
+        <precio>18</precio>
+        <stock>13</stock>
+        <formatos>
+            <formato>Digital</formato>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="9">
+        <titulo>Libro 9</titulo>
+        <autor id="9">Dan Brown</autor>
+        <genero>Misterio</genero>
+        <precio>19</precio>
         <stock>14</stock>
         <formatos>
             <formato>Físico</formato>
-            <formato>Digital</formato>
         </formatos>
     </libro>
-    <libro id="8">
-        <titulo>El coronel no tiene quien le escriba</titulo>
-        <autor id="1">Gabriel García Márquez</autor>
-        <genero>Novela</genero>
-        <precio>10</precio>
-        <stock>10</stock>
-        <formatos>
-            <formato>Físico</formato>
-            <formato>Digital</formato>
-        </formatos>
-    </libro>
-    <libro id="9">
-        <titulo>Misery</titulo>
-        <autor id="3">Stephen King</autor>
-        <genero>Terror</genero>
-        <precio>9</precio>
-        <stock>9</stock>
-        <formatos>
-            <formato>Físico</formato>
-            <formato>Digital</formato>
-        </formatos>
-    </libro>
+
     <libro id="10">
-        <titulo>Emma</titulo>
-        <autor id="7">Jane Austen</autor>
-        <genero>Romance</genero>
-        <precio>11</precio>
-        <stock>11</stock>
-        <formatos>
-            <formato>Físico</formato>
-            <formato>Digital</formato>
-        </formatos>
-    </libro>
-    <libro id="11">
-        <titulo>La llamada de Cthulhu</titulo>
-        <autor id="8">H.P. Lovecraft</autor>
-        <genero>Terror</genero>
-        <precio>7</precio>
-        <stock>7</stock>
-        <formatos>
-            <formato>Físico</formato>
-            <formato>Digital</formato>
-        </formatos>
-    </libro>
-    <libro id="12">
-        <titulo>Sherlock Holmes</titulo>
-        <autor id="9">Arthur Conan Doyle</autor>
-        <genero>Policial</genero>
-        <precio>10</precio>
-        <stock>10</stock>
-        <formatos>
-            <formato>Físico</formato>
-            <formato>Digital</formato>
-        </formatos>
-    </libro>
-    <libro id="13">
-        <titulo>Viaje al centro de la Tierra</titulo>
-        <autor id="10">Julio Verne</autor>
-        <genero>Aventura</genero>
-        <precio>12</precio>
-        <stock>12</stock>
-        <formatos>
-            <formato>Físico</formato>
-            <formato>Digital</formato>
-        </formatos>
-    </libro>
-    <libro id="14">
-        <titulo>Veinte poemas de amor</titulo>
-        <autor id="11">Pablo Neruda</autor>
+        <titulo>Libro 10</titulo>
+        <autor id="10">Pablo Neruda</autor>
         <genero>Poesía</genero>
-        <precio>9</precio>
-        <stock>9</stock>
-        <formatos>
-            <formato>Físico</formato>
-            <formato>Digital</formato>
-        </formatos>
-    </libro>
-    <libro id="15">
-        <titulo>El código Da Vinci</titulo>
-        <autor id="12">Dan Brown</autor>
-        <genero>Misterio</genero>
-        <precio>15</precio>
+        <precio>20</precio>
         <stock>15</stock>
         <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="11">
+        <titulo>Libro 11</titulo>
+        <autor id="11">Arthur Conan Doyle</autor>
+        <genero>Policial</genero>
+        <precio>21</precio>
+        <stock>16</stock>
+        <formatos>
             <formato>Físico</formato>
             <formato>Digital</formato>
         </formatos>
     </libro>
-</biblioteca>
+
+    <libro id="12">
+        <titulo>Libro 12</titulo>
+        <autor id="12">H.P. Lovecraft</autor>
+        <genero>Terror</genero>
+        <precio>22</precio>
+        <stock>17</stock>
+        <formatos>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="13">
+        <titulo>Libro 13</titulo>
+        <autor id="1">Gabriel García Márquez</autor>
+        <genero>Novela</genero>
+        <precio>23</precio>
+        <stock>18</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="14">
+        <titulo>Libro 14</titulo>
+        <autor id="2">Stephen King</autor>
+        <genero>Terror</genero>
+        <precio>24</precio>
+        <stock>19</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="15">
+        <titulo>Libro 15</titulo>
+        <autor id="3">Jane Austen</autor>
+        <genero>Romance</genero>
+        <precio>25</precio>
+        <stock>20</stock>
+        <formatos>
+            <formato>Digital</formato>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="16">
+        <titulo>Libro 16</titulo>
+        <autor id="4">Isaac Asimov</autor>
+        <genero>Ciencia ficción</genero>
+        <precio>26</precio>
+        <stock>21</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="17">
+        <titulo>Libro 17</titulo>
+        <autor id="5">Agatha Christie</autor>
+        <genero>Policial</genero>
+        <precio>27</precio>
+        <stock>22</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="18">
+        <titulo>Libro 18</titulo>
+        <autor id="6">George Orwell</autor>
+        <genero>Distopía</genero>
+        <precio>28</precio>
+        <stock>23</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="19">
+        <titulo>Libro 19</titulo>
+        <autor id="7">J.K. Rowling</autor>
+        <genero>Fantasía</genero>
+        <precio>29</precio>
+        <stock>24</stock>
+        <formatos>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+        <libro id="20">
+        <titulo>Libro 20</titulo>
+        <autor id="8">Julio Verne</autor>
+        <genero>Aventura</genero>
+        <precio>30</precio>
+        <stock>25</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="21">
+        <titulo>Libro 21</titulo>
+        <autor id="9">Dan Brown</autor>
+        <genero>Misterio</genero>
+        <precio>31</precio>
+        <stock>26</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="22">
+        <titulo>Libro 22</titulo>
+        <autor id="10">Pablo Neruda</autor>
+        <genero>Poesía</genero>
+        <precio>32</precio>
+        <stock>27</stock>
+        <formatos>
+            <formato>Digital</formato>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="23">
+        <titulo>Libro 23</titulo>
+        <autor id="11">Arthur Conan Doyle</autor>
+        <genero>Policial</genero>
+        <precio>33</precio>
+        <stock>28</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="24">
+        <titulo>Libro 24</titulo>
+        <autor id="12">H.P. Lovecraft</autor>
+        <genero>Terror</genero>
+        <precio>34</precio>
+        <stock>29</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="25">
+        <titulo>Libro 25</titulo>
+        <autor id="1">Gabriel García Márquez</autor>
+        <genero>Novela</genero>
+        <precio>35</precio>
+        <stock>30</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="26">
+        <titulo>Libro 26</titulo>
+        <autor id="2">Stephen King</autor>
+        <genero>Terror</genero>
+        <precio>36</precio>
+        <stock>31</stock>
+        <formatos>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="27">
+        <titulo>Libro 27</titulo>
+        <autor id="3">Jane Austen</autor>
+        <genero>Romance</genero>
+        <precio>37</precio>
+        <stock>32</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="28">
+        <titulo>Libro 28</titulo>
+        <autor id="4">Isaac Asimov</autor>
+        <genero>Ciencia ficción</genero>
+        <precio>38</precio>
+        <stock>33</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="29">
+        <titulo>Libro 29</titulo>
+        <autor id="5">Agatha Christie</autor>
+        <genero>Policial</genero>
+        <precio>39</precio>
+        <stock>34</stock>
+        <formatos>
+            <formato>Digital</formato>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="30">
+        <titulo>Libro 30</titulo>
+        <autor id="6">George Orwell</autor>
+        <genero>Distopía</genero>
+        <precio>40</precio>
+        <stock>35</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="31">
+        <titulo>Libro 31</titulo>
+        <autor id="7">J.K. Rowling</autor>
+        <genero>Fantasía</genero>
+        <precio>41</precio>
+        <stock>36</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="32">
+        <titulo>Libro 32</titulo>
+        <autor id="8">Julio Verne</autor>
+        <genero>Aventura</genero>
+        <precio>42</precio>
+        <stock>37</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="33">
+        <titulo>Libro 33</titulo>
+        <autor id="9">Dan Brown</autor>
+        <genero>Misterio</genero>
+        <precio>43</precio>
+        <stock>38</stock>
+        <formatos>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="34">
+        <titulo>Libro 34</titulo>
+        <autor id="10">Pablo Neruda</autor>
+        <genero>Poesía</genero>
+        <precio>44</precio>
+        <stock>39</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="35">
+        <titulo>Libro 35</titulo>
+        <autor id="11">Arthur Conan Doyle</autor>
+        <genero>Policial</genero>
+        <precio>45</precio>
+        <stock>40</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="36">
+        <titulo>Libro 36</titulo>
+        <autor id="12">H.P. Lovecraft</autor>
+        <genero>Terror</genero>
+        <precio>46</precio>
+        <stock>41</stock>
+        <formatos>
+            <formato>Digital</formato>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="37">
+        <titulo>Libro 37</titulo>
+        <autor id="1">Gabriel García Márquez</autor>
+        <genero>Novela</genero>
+        <precio>47</precio>
+        <stock>42</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="38">
+        <titulo>Libro 38</titulo>
+        <autor id="2">Stephen King</autor>
+        <genero>Terror</genero>
+        <precio>48</precio>
+        <stock>43</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="39">
+        <titulo>Libro 39</titulo>
+        <autor id="3">Jane Austen</autor>
+        <genero>Romance</genero>
+        <precio>49</precio>
+        <stock>44</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="40">
+        <titulo>Libro 40</titulo>
+        <autor id="4">Isaac Asimov</autor>
+        <genero>Ciencia ficción</genero>
+        <precio>50</precio>
+        <stock>45</stock>
+        <formatos>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="41">
+        <titulo>Libro 41</titulo>
+        <autor id="5">Agatha Christie</autor>
+        <genero>Policial</genero>
+        <precio>51</precio>
+        <stock>46</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="42">
+        <titulo>Libro 42</titulo>
+        <autor id="6">George Orwell</autor>
+        <genero>Distopía</genero>
+        <precio>52</precio>
+        <stock>47</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="43">
+        <titulo>Libro 43</titulo>
+        <autor id="7">J.K. Rowling</autor>
+        <genero>Fantasía</genero>
+        <precio>53</precio>
+        <stock>48</stock>
+        <formatos>
+            <formato>Digital</formato>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="44">
+        <titulo>Libro 44</titulo>
+        <autor id="8">Julio Verne</autor>
+        <genero>Aventura</genero>
+        <precio>54</precio>
+        <stock>49</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="45">
+        <titulo>Libro 45</titulo>
+        <autor id="9">Dan Brown</autor>
+        <genero>Misterio</genero>
+        <precio>55</precio>
+        <stock>50</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="46">
+        <titulo>Libro 46</titulo>
+        <autor id="10">Pablo Neruda</autor>
+        <genero>Poesía</genero>
+        <precio>56</precio>
+        <stock>51</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="47">
+        <titulo>Libro 47</titulo>
+        <autor id="11">Arthur Conan Doyle</autor>
+        <genero>Policial</genero>
+        <precio>57</precio>
+        <stock>52</stock>
+        <formatos>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="48">
+        <titulo>Libro 48</titulo>
+        <autor id="12">H.P. Lovecraft</autor>
+        <genero>Terror</genero>
+        <precio>58</precio>
+        <stock>53</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="49">
+        <titulo>Libro 49</titulo>
+        <autor id="1">Gabriel García Márquez</autor>
+        <genero>Novela</genero>
+        <precio>59</precio>
+        <stock>54</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+       <libro id="50">
+        <titulo>Libro 50</titulo>
+        <autor id="2">Stephen King</autor>
+        <genero>Terror</genero>
+        <precio>60</precio>
+        <stock>55</stock>
+        <formatos>
+            <formato>Digital</formato>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="51">
+        <titulo>Libro 51</titulo>
+        <autor id="3">Jane Austen</autor>
+        <genero>Romance</genero>
+        <precio>61</precio>
+        <stock>56</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="52">
+        <titulo>Libro 52</titulo>
+        <autor id="4">Isaac Asimov</autor>
+        <genero>Ciencia ficción</genero>
+        <precio>62</precio>
+        <stock>57</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="53">
+        <titulo>Libro 53</titulo>
+        <autor id="5">Agatha Christie</autor>
+        <genero>Policial</genero>
+        <precio>63</precio>
+        <stock>58</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="54">
+        <titulo>Libro 54</titulo>
+        <autor id="6">George Orwell</autor>
+        <genero>Distopía</genero>
+        <precio>64</precio>
+        <stock>59</stock>
+        <formatos>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="55">
+        <titulo>Libro 55</titulo>
+        <autor id="7">J.K. Rowling</autor>
+        <genero>Fantasía</genero>
+        <precio>65</precio>
+        <stock>60</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="56">
+        <titulo>Libro 56</titulo>
+        <autor id="8">Julio Verne</autor>
+        <genero>Aventura</genero>
+        <precio>66</precio>
+        <stock>61</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="57">
+        <titulo>Libro 57</titulo>
+        <autor id="9">Dan Brown</autor>
+        <genero>Misterio</genero>
+        <precio>67</precio>
+        <stock>62</stock>
+        <formatos>
+            <formato>Digital</formato>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="58">
+        <titulo>Libro 58</titulo>
+        <autor id="10">Pablo Neruda</autor>
+        <genero>Poesía</genero>
+        <precio>68</precio>
+        <stock>63</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="59">
+        <titulo>Libro 59</titulo>
+        <autor id="11">Arthur Conan Doyle</autor>
+        <genero>Policial</genero>
+        <precio>69</precio>
+        <stock>64</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="60">
+        <titulo>Libro 60</titulo>
+        <autor id="12">H.P. Lovecraft</autor>
+        <genero>Terror</genero>
+        <precio>70</precio>
+        <stock>65</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="61">
+        <titulo>Libro 61</titulo>
+        <autor id="1">Gabriel García Márquez</autor>
+        <genero>Novela</genero>
+        <precio>71</precio>
+        <stock>66</stock>
+        <formatos>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="62">
+        <titulo>Libro 62</titulo>
+        <autor id="2">Stephen King</autor>
+        <genero>Terror</genero>
+        <precio>72</precio>
+        <stock>67</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="63">
+        <titulo>Libro 63</titulo>
+        <autor id="3">Jane Austen</autor>
+        <genero>Romance</genero>
+        <precio>73</precio>
+        <stock>68</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="64">
+        <titulo>Libro 64</titulo>
+        <autor id="4">Isaac Asimov</autor>
+        <genero>Ciencia ficción</genero>
+        <precio>74</precio>
+        <stock>69</stock>
+        <formatos>
+            <formato>Digital</formato>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="65">
+        <titulo>Libro 65</titulo>
+        <autor id="5">Agatha Christie</autor>
+        <genero>Policial</genero>
+        <precio>75</precio>
+        <stock>70</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="66">
+        <titulo>Libro 66</titulo>
+        <autor id="6">George Orwell</autor>
+        <genero>Distopía</genero>
+        <precio>76</precio>
+        <stock>71</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="67">
+        <titulo>Libro 67</titulo>
+        <autor id="7">J.K. Rowling</autor>
+        <genero>Fantasía</genero>
+        <precio>77</precio>
+        <stock>72</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="68">
+        <titulo>Libro 68</titulo>
+        <autor id="8">Julio Verne</autor>
+        <genero>Aventura</genero>
+        <precio>78</precio>
+        <stock>73</stock>
+        <formatos>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="69">
+        <titulo>Libro 69</titulo>
+        <autor id="9">Dan Brown</autor>
+        <genero>Misterio</genero>
+        <precio>79</precio>
+        <stock>74</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="70">
+        <titulo>Libro 70</titulo>
+        <autor id="10">Pablo Neruda</autor>
+        <genero>Poesía</genero>
+        <precio>80</precio>
+        <stock>75</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="71">
+        <titulo>Libro 71</titulo>
+        <autor id="11">Arthur Conan Doyle</autor>
+        <genero>Policial</genero>
+        <precio>81</precio>
+        <stock>76</stock>
+        <formatos>
+            <formato>Digital</formato>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="72">
+        <titulo>Libro 72</titulo>
+        <autor id="12">H.P. Lovecraft</autor>
+        <genero>Terror</genero>
+        <precio>82</precio>
+        <stock>77</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="73">
+        <titulo>Libro 73</titulo>
+        <autor id="1">Gabriel García Márquez</autor>
+        <genero>Novela</genero>
+        <precio>83</precio>
+        <stock>78</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="74">
+        <titulo>Libro 74</titulo>
+        <autor id="2">Stephen King</autor>
+        <genero>Terror</genero>
+        <precio>84</precio>
+        <stock>79</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="75">
+        <titulo>Libro 75</titulo>
+        <autor id="3">Jane Austen</autor>
+        <genero>Romance</genero>
+        <precio>85</precio>
+        <stock>80</stock>
+        <formatos>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+        <libro id="75">
+        <titulo>Libro 75</titulo>
+        <autor id="3">Jane Austen</autor>
+        <genero>Romance</genero>
+        <precio>85</precio>
+        <stock>80</stock>
+        <formatos>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="76">
+        <titulo>Libro 76</titulo>
+        <autor id="4">Isaac Asimov</autor>
+        <genero>Ciencia ficción</genero>
+        <precio>86</precio>
+        <stock>81</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="77">
+        <titulo>Libro 77</titulo>
+        <autor id="5">Agatha Christie</autor>
+        <genero>Policial</genero>
+        <precio>87</precio>
+        <stock>82</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="78">
+        <titulo>Libro 78</titulo>
+        <autor id="6">George Orwell</autor>
+        <genero>Distopía</genero>
+        <precio>88</precio>
+        <stock>83</stock>
+        <formatos>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="79">
+        <titulo>Libro 79</titulo>
+        <autor id="7">J.K. Rowling</autor>
+        <genero>Fantasía</genero>
+        <precio>89</precio>
+        <stock>84</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="80">
+        <titulo>Libro 80</titulo>
+        <autor id="8">Julio Verne</autor>
+        <genero>Aventura</genero>
+        <precio>90</precio>
+        <stock>85</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="81">
+        <titulo>Libro 81</titulo>
+        <autor id="9">Dan Brown</autor>
+        <genero>Misterio</genero>
+        <precio>91</precio>
+        <stock>86</stock>
+        <formatos>
+            <formato>Digital</formato>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="82">
+        <titulo>Libro 82</titulo>
+        <autor id="10">Pablo Neruda</autor>
+        <genero>Poesía</genero>
+        <precio>92</precio>
+        <stock>87</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="83">
+        <titulo>Libro 83</titulo>
+        <autor id="11">Arthur Conan Doyle</autor>
+        <genero>Policial</genero>
+        <precio>93</precio>
+        <stock>88</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="84">
+        <titulo>Libro 84</titulo>
+        <autor id="12">H.P. Lovecraft</autor>
+        <genero>Terror</genero>
+        <precio>94</precio>
+        <stock>89</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="85">
+        <titulo>Libro 85</titulo>
+        <autor id="1">Gabriel García Márquez</autor>
+        <genero>Novela</genero>
+        <precio>95</precio>
+        <stock>90</stock>
+        <formatos>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="86">
+        <titulo>Libro 86</titulo>
+        <autor id="2">Stephen King</autor>
+        <genero>Terror</genero>
+        <precio>96</precio>
+        <stock>91</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="87">
+        <titulo>Libro 87</titulo>
+        <autor id="3">Jane Austen</autor>
+        <genero>Romance</genero>
+        <precio>97</precio>
+        <stock>92</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="88">
+        <titulo>Libro 88</titulo>
+        <autor id="4">Isaac Asimov</autor>
+        <genero>Ciencia ficción</genero>
+        <precio>98</precio>
+        <stock>93</stock>
+        <formatos>
+            <formato>Digital</formato>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="89">
+        <titulo>Libro 89</titulo>
+        <autor id="5">Agatha Christie</autor>
+        <genero>Policial</genero>
+        <precio>99</precio>
+        <stock>94</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="90">
+        <titulo>Libro 90</titulo>
+        <autor id="6">George Orwell</autor>
+        <genero>Distopía</genero>
+        <precio>100</precio>
+        <stock>95</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="91">
+        <titulo>Libro 91</titulo>
+        <autor id="7">J.K. Rowling</autor>
+        <genero>Fantasía</genero>
+        <precio>101</precio>
+        <stock>96</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="92">
+        <titulo>Libro 92</titulo>
+        <autor id="8">Julio Verne</autor>
+        <genero>Aventura</genero>
+        <precio>102</precio>
+        <stock>97</stock>
+        <formatos>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="93">
+        <titulo>Libro 93</titulo>
+        <autor id="9">Dan Brown</autor>
+        <genero>Misterio</genero>
+        <precio>103</precio>
+        <stock>98</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="94">
+        <titulo>Libro 94</titulo>
+        <autor id="10">Pablo Neruda</autor>
+        <genero>Poesía</genero>
+        <precio>104</precio>
+        <stock>99</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="95">
+        <titulo>Libro 95</titulo>
+        <autor id="11">Arthur Conan Doyle</autor>
+        <genero>Policial</genero>
+        <precio>105</precio>
+        <stock>100</stock>
+        <formatos>
+            <formato>Digital</formato>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="96">
+        <titulo>Libro 96</titulo>
+        <autor id="12">H.P. Lovecraft</autor>
+        <genero>Terror</genero>
+        <precio>106</precio>
+        <stock>101</stock>
+        <formatos>
+            <formato>Físico</formato>
+        </formatos>
+    </libro>
+
+    <libro id="97">
+        <titulo>Libro 97</titulo>
+        <autor id="1">Gabriel García Márquez</autor>
+        <genero>Novela</genero>
+        <precio>107</precio>
+        <stock>102</stock>
+        <formatos>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="98">
+        <titulo>Libro 98</titulo>
+        <autor id="2">Stephen King</autor>
+        <genero>Terror</genero>
+        <precio>108</precio>
+        <stock>103</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+        </formatos>
+    </libro>
+
+    <libro id="99">
+        <titulo>Libro 99</titulo>
+        <autor id="3">Jane Austen</autor>
+        <genero>Romance</genero>
+        <precio>109</precio>
+        <stock>104</stock>
+        <formatos>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
+
+    <libro id="100">
+        <titulo>Libro 100</titulo>
+        <autor id="4">Isaac Asimov</autor>
+        <genero>Ciencia ficción</genero>
+        <precio>110</precio>
+        <stock>105</stock>
+        <formatos>
+            <formato>Físico</formato>
+            <formato>Digital</formato>
+            <formato>Audiolibro</formato>
+        </formatos>
+    </libro>
