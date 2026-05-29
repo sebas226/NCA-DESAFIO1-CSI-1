@@ -6,7 +6,6 @@ body {
   color: var(--text-dark);
 }
 
-/* Navbar */
 .navbar {
   background: rgb(0, 0, 1);
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -27,7 +26,17 @@ body {
   color: rgb(80, 18, 134);
 }
 .seccion-principal {
-  background: linear-gradient(135deg, rgb(12, 12, 100) 0%, #1a252f 100%);
+
+
+    background-image:
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url('../IMAGENES/fondo.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;      
+  background-position: center; 
+
+  width: 100%;
+  min-height: 500px; 
+
   color: white;
   padding: 100px 0;
   text-align: center;
@@ -43,7 +52,7 @@ body {
   font-size: 1.2rem;
   opacity: 0.9;
 }
-/* Tarjetas de Libros */
+
 .tarjeta-libro {
   background: white;
   border: none;

@@ -9,7 +9,7 @@ CREATE TABLE Usuario (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre_usuario VARCHAR(50) NOT NULL,
     email VARCHAR(150),
-    contrasena VARCHAR(50) NOT NULL, -- Mantenido sin eñe
+    contrasena VARCHAR(50) NOT NULL,
     telefono VARCHAR(9) NOT NULL,
     direccion VARCHAR(100) NOT NULL
 );
@@ -81,7 +81,7 @@ CREATE TABLE libro_digital (
 -- =============================================================
 
 -- USUARIOS (IDs del 1 al 12 automáticamente)
-INSERT INTO Usuario (nombre_usuario, email, contrasena, telefono, direccion) -- Corregido a contrasena
+INSERT INTO Usuario (nombre_usuario, email, contrasena, telefono, direccion)
 VALUES
 ('juan123','juan@email.com','1234','666111222','Calle A'),
 ('maria456','maria@email.com','abcd','333222111','Calle B'),
@@ -96,7 +96,7 @@ VALUES
 ('laura55','laura@email.com','pass9','688999000','Calle K'),
 ('andres66','andres@email.com','pass10','699000111','Calle L');
 
--- AUTORES (Agregado número de libros estimado para que funcionen las consultas)
+-- AUTORES 
 INSERT INTO Autor (nombre_autor, fecha_nacimiento, fecha_fallecimiento, estilo_literario, numero_libros)
 VALUES
 ('Gabriel García Márquez','1927-03-06','2014-04-17','Realismo mágico', 2),
@@ -131,7 +131,7 @@ VALUES
 ('Veinte poemas de amor','Poesía',9,9,11),
 ('El código Da Vinci','Misterio',15,15,12);
 
--- CLIENTES (Se añadió la columna id_usuario mapeando los IDs del 1 al 12)
+-- CLIENTES 
 INSERT INTO Cliente (id_usuario, numero_socio, fecha_registro, limite_prestamos, multas)
 VALUES
 (1,'SOC-1001','2026-01-10',3,0),
@@ -269,14 +269,6 @@ WHERE id_libro IN (
 );
 
 -- 5
-SELECT nombre_autor
-FROM Autor
-WHERE numero_libros = (
-    SELECT MAX(numero_libros)
-    FROM Autor
-);
-
--- 6
 SELECT nombre_usuario, email, direccion
 FROM Usuario
 WHERE id_usuario IN (
@@ -344,10 +336,6 @@ WHERE MATCH(titulo, descripcion) AGAINST ('historia mágico');
 CREATE INDEX idx_libro_genero
 ON Libro(genero);
 
--- indice no clusterizado usando ALTER TABLE sobre el formato de los libros digitales
-ALTER TABLE libro_digital
-ADD INDEX idx_digital_formato(formato);
-
 -- Para borrar indices se haria de esta forma
 -- DROP INDEX idx_usuario_telefono ON Usuario;
 
@@ -361,10 +349,6 @@ CREATE VIEW vista_LIBROS_AUTORES AS
 	SELECT l.id_libro AS ID, l.titulo AS TITULO, a.nombre_autor AS AUTOR
     FROM Libro l
     JOIN Autor a ON l.id_autor = a.id_autor;
-
--- CONSULTA SOBRE LA PROPIA VISTA
-SELECT * FROM vista_LIBROS_AUTORES
-WHERE ID > 11;
     
 -- Solo muestra datos básicos para la gestión general de la biblioteca
 CREATE VIEW vista_usuarios_publica AS
@@ -379,7 +363,6 @@ CREATE VIEW VISTA_TOTAL_MULTAS_CLIENTE2 AS
     GROUP BY u.id_usuario, u.nombre_usuario;
     
 -- Consultas de prueba sobre las vistas agregadas
-SELECT * FROM VISTA_TOTAL_MULTAS_CLIENTE;
 SELECT * FROM VISTA_TOTAL_MULTAS_CLIENTE2;
 SELECT TOTAL_MULTAS FROM VISTA_TOTAL_MULTAS_CLIENTE;
 
@@ -566,10 +549,7 @@ BEGIN
     RETURN total;
 END //
 
--- 2. Restablecemos el delimitador normal
-DELIMITER ;
-
--- 3. Prueba de la función
+-- 1. Prueba de la función
 SELECT totalLibros();
 
 -- EJEMPLO 2: Saber cuántos préstamos activos tiene un usuario
