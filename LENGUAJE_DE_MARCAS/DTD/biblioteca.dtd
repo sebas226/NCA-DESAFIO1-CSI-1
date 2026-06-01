@@ -1,0 +1,14 @@
+<!ELEMENT biblioteca (libro*)>
+<!ELEMENT libro (titulo, autor, genero, precio, stock, formatos)>
+<!ATTLIST libro id CDATA #REQUIRED>
+
+<!ELEMENT titulo (#PCDATA)>
+<!ELEMENT autor (#PCDATA)>
+<!ATTLIST autor id CDATA #REQUIRED>
+
+<!ELEMENT genero (#PCDATA)>
+<!ELEMENT precio (#PCDATA)>
+<!ELEMENT stock (#PCDATA)>
+
+<!ELEMENT formatos (formato+)>
+<!ELEMENT formato (#PCDATA)>
